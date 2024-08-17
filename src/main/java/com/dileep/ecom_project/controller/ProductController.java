@@ -82,8 +82,13 @@ public class ProductController {
             return new ResponseEntity<>("Product does not exit", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
-
     }
 
+    @GetMapping("products/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String keyword) {
+        System.out.println("Searching with "+ keyword);
+        List<Product> products = service.searchProduct(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
 
 }
